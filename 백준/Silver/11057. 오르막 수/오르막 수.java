@@ -1,25 +1,36 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
+    static long mod = 10007;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int[][] dp = new int[N+1][10];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
 
-        for(int i = 0; i < 10; i++) {
-            dp[0][i] = 1;
+        int[][] dp = new int[N + 1][10];
+        for (int j = 0; j < 10; j++) {
+            dp[1][j] = 1;
         }
-        
-        for(int i = 1; i < N+1; i++) {
-            for(int j = 0; j < 10; j++) {
-                for(int k = j; k < 10; k++) {
-                    dp[i][j] += dp[i-1][k];
-                    dp[i][j] %= 10007;
+
+        for (int i = 2; i <= N; i++) {
+            long sum = 0; // Change data type to long
+            for (int j = 0; j < 10; j++) {
+                if (j == 0) {
+                    dp[i][0] = dp[i - 1][0];
                 }
+                sum = (sum + dp[i - 1][j]) % mod;
+                dp[i][j] = (int) sum; // Convert back to int for dp array
             }
         }
-        System.out.println(dp[N][0] % 10007);
-    }
 
+        int result = 0;
+        for (int j = 0; j < 10; j++) {
+            result = (result + dp[N][j]) % (int) mod; // Convert back to int for result
+        }
+
+        System.out.println(result);
+        br.close();
+    }
 }
