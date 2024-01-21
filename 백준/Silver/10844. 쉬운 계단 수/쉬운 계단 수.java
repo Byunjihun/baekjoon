@@ -1,44 +1,32 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Main {
-    static int N;
-    static long mod = 1000000000;
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        N = sc.nextInt();
-        long dp[][] = new long[N+1][10];
+    static int mod = 1000000000;
 
-        /* 첫번째 자릿수는 경우의 수가 하나 뿐임 */
-        for(int i=1; i<10; i++) {
-            dp[1][i] = 1;
-        }   
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        /* 두번째 자릿수부터 N번째 자릿수까지 탐색 */
-        for(int i=2; i<=N; i++) {
-            /* 현재 자릿값을 0부터 9까지 탐색*/
-            for(int j=0; j<10; j++) {
-                // 자릿값이 9라면 이전 자릿값은 8만 가능
-                if(j == 9) {
-                    dp[i][9] = dp[i-1][8]%mod;
-                }
-                // 자릿값이 0이라면 이전 자릿값은 1만 가능
-                else if(j==0) {
-                    dp[i][0] = dp[i-1][1] % mod;
-                }
-                // 그 외는 현재 자릿값의 -1, +1 가능
-                else {
-                    dp[i][j] = (dp[i-1][j-1]+ dp[i-1][j+1])%mod;
-                }
+        int N = Integer.parseInt(br.readLine());
+
+        int[][] dp = new int[N + 1][10];
+        for(int i = 1; i <= 9; i++) {
+            dp[1][i] = 1; //1자리 수의 i번째 수가 계단이 되는 경우는 한가지 밖에 없으므로 초기화.
+        }
+
+        for(int i = 2; i <= N; i++) {
+            for(int j = 0; j < 10; j++) {
+                if(j == 0) dp[i][j] = dp[i - 1][j + 1] % mod; //끝 자리가 0일때는 앞에 올 수 있는 수가 1밖에 없다.
+                else if(j == 9) dp[i][j] = dp[i - 1][j - 1] % mod; //끝 자리가 9 일때는 앞에 올 수 있는 수가 8밖에 없다.
+                else dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j + 1]) % mod;
             }
         }
 
-        long ans = 0;
-        for(int i=0; i<10; i++) {
-            ans += dp[N][i];
+        long result = 0;
+        for(int i = 0; i < 10; i++ ) {
+            result += dp[N][i];
         }
-
-        System.out.println(ans%mod);
+        System.out.println(result % mod);
     }
-
 }
