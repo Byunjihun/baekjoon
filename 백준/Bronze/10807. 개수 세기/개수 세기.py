@@ -1,7 +1,5 @@
-import sys
-
 N= int(input())
-numbers = list(map(int,sys.stdin.readline().split()))
+numbers = list(map(int, input().split()))
 v = int(input()) 
 
 count = numbers.count(v)
