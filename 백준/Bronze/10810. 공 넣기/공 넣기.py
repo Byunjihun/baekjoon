@@ -1,10 +1,9 @@
-N, M = map(int, input().split())
+N,M = map(int,input().split())
 
-baskets = [0] * N
+basket = [0] * N
 
 for _ in range(M):
-    i, j, k = map(int, input().split())
-    for idx in range(i - 1, j):
-        baskets[idx] = k
-
-print(* baskets)
+    i,j,k= map(int,input().split())
+    for idx in range(i,j+1):
+        basket[idx-1] = k
+print(*basket)
