@@ -1,6 +1,8 @@
 chess = [1,1,2,2,2,8]
 
-numbers = list(map(int,input().split()))
+chess_input = list(map(int,input().split()))
 
-for i in range(6):
-    print(chess[i] - numbers[i], end=' ')
+new_list = []
+for i in range(len(chess)):
+    new_list.append(chess[i] - chess_input[i])
+print(*new_list)
