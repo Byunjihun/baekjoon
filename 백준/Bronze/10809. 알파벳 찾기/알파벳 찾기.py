@@ -1,11 +1,10 @@
-word = input()
+word = list(input())
 
-positions = [-1] * 26
+abc = 'abcdefghijklmnopqrstuvwxyz'
 
-for idx, char in enumerate(word):
-    char_idx = ord(char) - ord('a')  
-    if positions[char_idx] == -1:   
-        positions[char_idx] = idx
+for i in abc:
+    if i in word:
+        print(word.index(i), end=' ')
+    else:
+        print(-1, end=' ')
 
-for pos in positions:
-    print(pos, end=' ')
