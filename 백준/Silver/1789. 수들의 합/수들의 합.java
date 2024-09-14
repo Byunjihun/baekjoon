@@ -8,16 +8,13 @@ public class Main {
         long S = Long.parseLong(br.readLine());
 
         long sum = 0;
-        int N = 0;
-
-        for (int i = 1; sum <= S; i++) {
-            sum += i;
-            if (sum > S) {
-                break;
-            }
-            N = i;
+        int i = 0;
+        
+        while (sum <= S) {
+            i++;     
+            sum += i;  
         }
-
-        System.out.println(N);
+        
+        System.out.println(i - 1);
     }
 }
