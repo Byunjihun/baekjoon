@@ -13,17 +13,15 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
-        while (K > 0) {
-            if (N >= 2 * M) {
+        while (K > 0){
+            if ( N >= M * 2){
                 N--;
-            } else {
+            }
+            else {
                 M--;
             }
             K--;
         }
-        
-        int maxTeams = Math.min(N / 2, M);
-
-        System.out.println(maxTeams);
+        System.out.println(Math.min(N / 2, M));
     }
 }
