@@ -1,19 +1,19 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-
-    public static int N;
-    public static int M;
-    public static int[] dx = new int[]{-1,1,0,0};
-    public static int[] dy = new int[]{0,0,-1,1};
-    public static int[][] map;
-    public static boolean[][] visited;
-
+    static int N;
+    static int M;
+    static int[][] map;
+    static boolean[][] visited;
+    static Queue<int[]> q = new LinkedList<>();
+    static int[] dx = new int[]{-1,1,0,0};
+    static int[] dy = new int[]{0,0,-1,1};
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -26,20 +26,17 @@ public class Main {
         visited = new boolean[N][M];
 
         for (int i=0; i<N; i++){
-            String s = br.readLine();
+            String str = br.readLine();
             for (int j=0; j<M; j++){
-                map[i][j] = s.charAt(j) - '0';
+                map[i][j] = str.charAt(j) - '0';
             }
         }
-
         visited[0][0] = true;
         bfs(0,0);
         System.out.println(map[N-1][M-1]);
-
     }
 
     public static void bfs(int x, int y){
-        Queue<int[]> q = new LinkedList<>();
         q.add(new int[]{x,y});
 
         while (!q.isEmpty()){
@@ -59,7 +56,7 @@ public class Main {
                 }
 
                 q.add(new int[]{nextX,nextY});
-                map[nextX][nextY] = map[nowX][nowY] + 1;
+                map[nextX][nextY] =  map[nowX][nowY] + 1;
                 visited[nextX][nextY] = true;
             }
         }
