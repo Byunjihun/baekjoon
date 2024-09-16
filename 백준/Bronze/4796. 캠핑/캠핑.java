@@ -4,11 +4,11 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class Main {
+
     static int i = 0;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int cal = 0;
         while (true){
             StringTokenizer st = new StringTokenizer(br.readLine());
             int L = Integer.parseInt(st.nextToken());
@@ -19,9 +19,11 @@ public class Main {
                 break;
             }
 
+            int sum = 0;
             i++;
-            cal = ((V / P) * L) + Math.min(V % P, L);
-            System.out.println("Case " + i + ": " + cal);
+            sum += ((V / P) * L) + Math.min((V % P),L);
+
+            System.out.println("Case " + i + ": " + sum);
         }
     }
 }
