@@ -7,12 +7,13 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
+
     static int N;
     static int M;
     static int[][] map;
-    static boolean[][] visited;
+    static boolean[][] visit;
     static Queue<int[]> q = new LinkedList<>();
-    static int[] dx = new int[]{-1,1,0,0};
+    static int[] dx= new int[]{-1,1,0,0};
     static int[] dy = new int[]{0,0,-1,1};
 
     public static void main(String[] args) throws IOException {
@@ -23,7 +24,7 @@ public class Main {
         M = Integer.parseInt(st.nextToken());
 
         map = new int[N][M];
-        visited = new boolean[N][M];
+        visit = new boolean[N][M];
 
         for (int i=0; i<N; i++){
             String str = br.readLine();
@@ -31,12 +32,12 @@ public class Main {
                 map[i][j] = str.charAt(j) - '0';
             }
         }
-        visited[0][0] = true;
+        visit[0][0] = true;
         bfs(0,0);
         System.out.println(map[N-1][M-1]);
     }
 
-    public static void bfs(int x, int y){
+    static void bfs(int x, int y){
         q.add(new int[]{x,y});
 
         while (!q.isEmpty()){
@@ -51,13 +52,13 @@ public class Main {
                 if (nextX < 0 || nextY < 0 || nextX >= N || nextY >= M){
                     continue;
                 }
-                if (visited[nextX][nextY] || map[nextX][nextY] == 0){
+
+                if (map[nextX][nextY] == 0 || visit[nextX][nextY]){
                     continue;
                 }
-
-                q.add(new int[]{nextX,nextY});
-                map[nextX][nextY] =  map[nowX][nowY] + 1;
-                visited[nextX][nextY] = true;
+                visit[nextX][nextY] = true;
+                map[nextX][nextY] = map[nowX][nowY] + 1;
+                q.add(new int[]{nextX, nextY});
             }
         }
     }
