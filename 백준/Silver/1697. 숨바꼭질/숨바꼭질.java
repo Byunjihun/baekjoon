@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 public class Main {
     static int N;
     static int K;
-    static int[] check = new int[100001];
+    static int[] visit = new int[100001];
     static Queue<Integer> q = new LinkedList<>();
 
     public static void main(String[] args) throws IOException {
@@ -27,7 +27,9 @@ public class Main {
 
     static void bfs(int num) {
         q.add(num);
-        check[num] = 1;
+        visit[num] = 1;
+
+        int[] move = {1, -1, 2};
 
         while (!q.isEmpty()) {
             int temp = q.poll();
@@ -35,22 +37,20 @@ public class Main {
             for (int i = 0; i < 3; i++) {
                 int next;
 
-                if (i == 0) {
-                    next = temp + 1;
-                } else if (i == 1) {
-                    next = temp - 1;
+                if (i == 2) {
+                    next = temp * move[i];
                 } else {
-                    next = temp * 2;
+                    next = temp + move[i];
                 }
 
                 if (next == K) {
-                    System.out.println(check[temp]);
+                    System.out.println(visit[temp]);
                     return;
                 }
 
-                if (next >= 0 && next < check.length && check[next] == 0) {
+                if (next >= 0 && next < visit.length && visit[next] == 0) {
                     q.add(next);
-                    check[next] = check[temp] + 1;
+                    visit[next] = visit[temp] + 1;
                 }
             }
         }
