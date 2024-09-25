@@ -44,27 +44,27 @@ public class Main {
             int size = q.size();
 
             for (int i = 0; i < size; i++) {
-                int[] current = q.poll();
-                int x = current[0];
-                int y = current[1];
-                int broken = current[2];
+                int[] now = q.poll();
+                int nowX = now[0];
+                int nowY = now[1];
+                int broken = now[2];
 
-                if (x == N - 1 && y == M - 1) {
+                if (nowX == N - 1 && nowY == M - 1) {
                     return steps;
                 }
 
-                for (int dir = 0; dir < 4; dir++) {
-                    int nx = x + dx[dir];
-                    int ny = y + dy[dir];
+                for (int j = 0; j < 4; j++) {
+                    int nextX = nowX + dx[j];
+                    int nexyY = nowY + dy[j];
 
-                    if (nx >= 0 && nx < N && ny >= 0 && ny < M) {
-                        if (arr[nx][ny] == 0 && !visited[nx][ny][broken]) {
-                            q.add(new int[]{nx, ny, broken});
-                            visited[nx][ny][broken] = true;
+                    if (nextX >= 0 && nextX < N && nexyY >= 0 && nexyY < M) {
+                        if (arr[nextX][nexyY] == 0 && !visited[nextX][nexyY][broken]) {
+                            q.add(new int[]{nextX, nexyY, broken});
+                            visited[nextX][nexyY][broken] = true;
                         }
-                        if (arr[nx][ny] == 1 && broken == 0 && !visited[nx][ny][1]) {
-                            q.add(new int[]{nx, ny, 1});
-                            visited[nx][ny][1] = true;
+                        if (arr[nextX][nexyY] == 1 && broken == 0 && !visited[nextX][nexyY][1]) {
+                            q.add(new int[]{nextX, nexyY, 1});
+                            visited[nextX][nexyY][1] = true;
                         }
                     }
                 }
