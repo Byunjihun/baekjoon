@@ -29,9 +29,12 @@ public class Main {
                 st = new StringTokenizer(br.readLine());
                 for (int x = 0; x < M; x++) {
                     map[z][y][x] = Integer.parseInt(st.nextToken());
+
                     if (map[z][y][x] == 1) {
                         q.add(new int[]{z, y, x});
-                    } else if (map[z][y][x] == 0) {
+                    }
+
+                    else if (map[z][y][x] == 0) {
                         unripeCount++;
                     }
                 }
@@ -65,10 +68,10 @@ public class Main {
                 int nowY = now[1];
                 int nowX = now[2];
 
-                for (int d = 0; d < 6; d++) {
-                    int nextZ = nowZ + dz[d];
-                    int nextY = nowY + dy[d];
-                    int nextX = nowX + dx[d];
+                for (int j = 0; j < 6; j++) {
+                    int nextZ = nowZ + dz[j];
+                    int nextY = nowY + dy[j];
+                    int nextX = nowX + dx[j];
 
                     if (nextZ >= 0 && nextY >= 0 && nextX >= 0 && nextZ < H && nextY < N && nextX < M) {
                         if (map[nextZ][nextY][nextX] == 0) {
