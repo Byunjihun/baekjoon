@@ -1,22 +1,19 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
-public class Solution {
+class Solution {
+    public static void main(String args[]) throws Exception {
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Scanner sc = new Scanner(System.in);
+        int T;
+        T = sc.nextInt();
 
-        int T = Integer.parseInt(br.readLine());
-
-        for (int i = 0; i < T; i++) {
+        for (int test_case = 1; test_case <= T; test_case++) {
             int sum = 0;
-            String[] str = br.readLine().split(" ");
-            for (int j = 0; j < 10; j++) {
-                int num = Integer.parseInt(str[j]);
+            for (int i = 0; i < 10; i++) {
+                int num = sc.nextInt();
                 sum += num;
             }
-            System.out.println("#" + (i + 1) + " " + Math.round(sum / 10.0));
+            System.out.println("#" + test_case + " " + Math.round(sum / 10.0));
         }
     }
 }
