@@ -24,10 +24,10 @@ public class Solution {
                 max = Math.max(max, rowSum);
             }
 
-            for (int j = 0; j < 100; j++) {
+            for (int i = 0; i < 100; i++) {
                 int colSum = 0;
-                for (int i = 0; i < 100; i++) {
-                    colSum += numArray[i][j];
+                for (int j = 0; j < 100; j++) {
+                    colSum += numArray[j][i];
                 }
                 max = Math.max(max, colSum);
             }
