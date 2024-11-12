@@ -1,51 +1,62 @@
 import java.util.Scanner;
 
 public class Solution {
+    private static int max;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         for (int test_case = 1; test_case <= 10; test_case++) {
-            int testCaseNumber = sc.nextInt();
-            int[][] numArray = new int[100][100];
-            int max = Integer.MIN_VALUE;
+            sc.nextInt();
+            int[][] numStr = new int[100][100];
 
             for (int i = 0; i < 100; i++) {
                 for (int j = 0; j < 100; j++) {
-                    numArray[i][j] = sc.nextInt();
+                    numStr[i][j] = sc.nextInt();
                 }
             }
+            max = 0;
 
             for (int i = 0; i < 100; i++) {
                 int rowSum = 0;
                 for (int j = 0; j < 100; j++) {
-                    rowSum += numArray[i][j];
+                    rowSum += numStr[i][j];
                 }
-                max = Math.max(max, rowSum);
+                checkMax(rowSum);
             }
 
+            int[] colList = new int[100];
             for (int i = 0; i < 100; i++) {
                 int colSum = 0;
                 for (int j = 0; j < 100; j++) {
-                    colSum += numArray[j][i];
+                    colSum += numStr[j][i];
                 }
-                max = Math.max(max, colSum);
+                checkMax(colSum);
             }
 
-            int diagonalSum1 = 0;
+            int diagonal1Sum = 0;
             for (int i = 0; i < 100; i++) {
-                diagonalSum1 += numArray[i][i];
+                diagonal1Sum += numStr[i][i];
             }
-            max = Math.max(max, diagonalSum1);
+            checkMax(diagonal1Sum);
 
-            int diagonalSum2 = 0;
+            int diagonal2Sum = 0;
             for (int i = 0; i < 100; i++) {
-                diagonalSum2 += numArray[i][99 - i];
+                diagonal2Sum = numStr[i][99 - i];
             }
-            max = Math.max(max, diagonalSum2);
+
+            checkMax(diagonal2Sum);
 
             System.out.println("#" + test_case + " " + max);
         }
+        
         sc.close();
+    }
+
+    private static void checkMax(int sum) {
+
+        if (max < sum) {
+            max = sum;
+        }
     }
 }
