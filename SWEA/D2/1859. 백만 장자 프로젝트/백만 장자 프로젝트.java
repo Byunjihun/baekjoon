@@ -4,26 +4,29 @@ public class Solution {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         int T = sc.nextInt();
 
-        for (int i = 1; i <= T; i++) {
+        for (int test_case = 1; test_case <= T; test_case++) {
             int N = sc.nextInt();
-            int[] list = new int[N];
-            for (int j = 0; j < list.length; j++) {
-                list[j] = sc.nextInt();
+            int[] days = new int[N];
+
+            for (int i = 0; i < N; i++) {
+                days[i] = sc.nextInt();
             }
 
             long sum = 0;
-            int max = 0;
+            int max = Integer.MIN_VALUE;
 
-            for (int k = list.length - 1; k >= 0; k--) {
-                if (max < list[k]) {
-                    max = list[k];
+            for (int i = N - 1; i >= 0; i--) {
+                if (max < days[i]) {
+                    max = days[i];
                 } else {
-                    sum += max - list[k];
+                    sum += (max - days[i]);
                 }
             }
-            System.out.println("#" + i + " " + sum);
+            System.out.println("#" + test_case + " " + sum);
         }
+        sc.close();
     }
 }
