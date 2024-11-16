@@ -10,10 +10,9 @@ public class Solution {
         StringBuilder sb = new StringBuilder();
 
         for (int i = 1; i <= N; i++) {
-            String str = Integer.toString(i);
+            String str = String.valueOf(i);
 
             int clapCount = 0;
-
             for (char c : str.toCharArray()) {
                 if (c == '3' || c == '6' || c == '9') {
                     clapCount++;
@@ -26,8 +25,9 @@ public class Solution {
                 }
                 sb.append(" ");
             } else {
-                sb.append(i).append(" ");
+                sb.append(str).append(" ");
             }
+
         }
         System.out.println(sb.toString().trim());
         sc.close();
