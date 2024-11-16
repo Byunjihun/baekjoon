@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Solution {
@@ -6,27 +7,27 @@ public class Solution {
         Scanner sc = new Scanner(System.in);
 
         int T = sc.nextInt();
+
         for (int test_case = 1; test_case <= T; test_case++) {
             sc.nextInt();
+            int[] score = new int[1000];
+            int[] number = new int[101];
 
-            int[] scores = new int[1000];
-            int[] frequency = new int[101];
-
-            for (int i = 0; i < scores.length; i++) {
-                scores[i] = sc.nextInt();
-                frequency[scores[i]]++;
+            for (int i = 0; i < score.length; i++) {
+                score[i] = sc.nextInt();
+                number[score[i]]++;
             }
 
-            int frequency_num = 0;
-            int frequency_idx = 0;
+            int max_number = 0;
+            int max_number_idx = 0;
 
-            for (int i = 0; i < frequency.length; i++) {
-                if (frequency_num < frequency[i] || frequency_num == frequency[i] && i > frequency_idx) {
-                    frequency_num = frequency[i];
-                    frequency_idx = i;
+            for (int i = 0; i < number.length; i++) {
+                if (max_number < number[i] || max_number == number[i] && i > max_number_idx) {
+                    max_number = number[i];
+                    max_number_idx = i;
                 }
             }
-            System.out.println("#" + test_case + " " + frequency_idx);
+            System.out.println("#" + test_case + " " + max_number_idx);
         }
     }
 }
