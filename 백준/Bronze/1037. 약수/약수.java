@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Main {
 
@@ -9,16 +10,13 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int A = Integer.parseInt(br.readLine());
         String[] str = br.readLine().split(" ");
+        int[] numbers = new int[A];
 
-        int[] number = new int[A];
-
-        for (int i = 0; i < number.length; i++) {
-            number[i] = Integer.parseInt(str[i]);
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = Integer.parseInt(str[i]);
         }
+        Arrays.sort(numbers);
 
-        Arrays.sort(number);
-
-        int cal = (number[number.length - 1] * number[0]);
-        System.out.println(cal);
+        System.out.println(numbers[0] * numbers[numbers.length - 1]);
     }
 }
